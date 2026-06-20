@@ -1,58 +1,46 @@
-# 🚴 VeloFeed
+# VeloFeed — Intelligent Real-Time Media & Asset Tracking Platform
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React__Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
-  <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
-</p>
+VeloFeed is a cutting-edge, cross-platform mobile application engineered using **React Native**, **Expo (Router v3)**, and TypeScript. It transforms high-velocity data layers from live global wire desks into a personalized, highly interactive, and visually stunning user experience. 
+
+Featuring an ambient dynamic UI, an automated conversational Text-to-Speech (TTS) radar audio briefing queue, custom frosted-glass asset correlation filter matrices, and an optimized single-request network architecture, VeloFeed bridges the gap between raw global telemetry feeds and mobile consumers.
 
 ---
 
-## 📋 Table of Contents
-1. [About the Project](#-about-the-project)
-2. [Core Features](#-core-features)
-3. [Architecture & Tech Stack](#-architecture--tech-stack)
-4. [Getting Started](#-getting-started)
-5. [Project Roadmap](#-project-roadmap)
-6. [Contributing](#-contributing)
+## ⚡ Core Engine Architecture & Features
+
+### 1. Optimized Free-Tier Sync Engine
+* **Single-Request Parallel Batching:** To protect API quotas and avoid `429 Too Many Requests` or `401 Unauthorized` rate limits, the data aggregation layer condenses multiple separate category hooks (`politics`, `sports`, `technology`, `entertainment`, `business`, `health`) into a single comma-separated multi-query URI payload string.
+* **Universal Free-Tier Fail-Safe:** Switched to the public `/news` pipeline distribution layout from `NewsData.io` ensuring stable endpoints without requiring paid enterprise tiers.
+* **Self-Healing State Fallbacks:** Engineered with complete network exception validation catches. If connection drops or tokens fail, the UI elegantly avoids layout breaking, routing data down to safe states.
+
+### 2. Conversational Voice Assistant (Audio Radar Briefing)
+* **Fixed Position Floating Action Button (FAB):** Seamlessly pinned to the bottom-right viewport grid axis, acting as a global master stream trigger toggle.
+* **Continuous Non-Blocking Sequential Queue:** Utilizes recursive `expo-speech` native driver loop callbacks (`onDone`) to cycle through the top spotlight articles smoothly.
+* **Zero Robotic Metadata Parsing:** Custom regex processing drops cold metadata markers like "update number" or "category tag." It strictly broadcasts clean, natural speech flows ("Reading today's top headlines...", "Next headline...", "Briefing sequence complete.").
+
+### 3. High-Fidelity Ambient UI/UX
+* **Dynamic Aura Vectors:** Animated, infinitely looping background gradient blobs tracking across parallel translation planes to ensure visual texture without blocking native thread performance.
+* **Frosted Glass (Glassmorphism) Micro-Interactions:** Custom styled information panels balancing dynamic opacity settings depending on active system parameters (Dark/Light mode native shifts).
+* **Pull-to-Refresh & Infinite Continuous Scroll:** Fully native `RefreshControl` bridges data reload requests directly to live servers on user pull-down, resetting view index frames instantly.
 
 ---
 
-## 📖 About the Project
+## 📂 Project Directory Structure
 
-**VeloFeed** is an enterprise-grade, high-performance mobile application engineered specifically for the cycling community. It serves as a unified content hub, delivering low-latency dynamic social feeds, real-time activity tracking analytics, and contextual notifications for athletes.
-
-The system is optimized for mobile-first environments, ensuring minimal memory footprint, smooth list rendering (60 FPS), and reactive data persistence.
-
----
-
-## ✨ Core Features
-
-*   ⚡ **Fluid Activity Feed:** Virtualized lists (`FlatList` optimization) providing slick, infinite scrolling through media-rich user posts and community updates.
-*   📊 **Performance Dashboard:** Visually engaging analytical interface designed for active users to read and view metrics effortlessly.
-*   🧩 **Modular Architecture:** Fully decoupled UI components designed for strict reusability, predictability, and easy debugging.
-*   🌑 **Modern UI/UX:** Dark mode compatible aesthetic built with custom-themed micro-interactions and smooth transitions.
-
----
-
-## 🛠️ Architecture & Tech Stack
-
-### Frontend & Core Mobile Framework
-*   **Framework:** [React Native](https://reactnative.dev/) via [Expo Ecosystem](https://expo.dev/)
-*   **Navigation:** React Navigation (Native Stack & Bottom Tabs) for high-performance screen transitions.
-*   **State Management:** Optimized Context API / State hooks for fast, localized data flow.
-
-### System Directory Layout
 ```text
-VeloFeed/
-├── assets/               # Production assets, icons, and branding materials
-├── src/
-│   ├── components/       # Atomized UI modules (FeedCards, CustomButtons, Lists)
-│   ├── navigation/       # Type-safe routing definitions (Stack, Tab Navigators)
-│   ├── screens/          # Core views (FeedScreen, ProfileScreen, AnalyticsScreen)
-│   ├── theme/            # Global styles, color palettes, and layout constants
-│   └── utils/            # Helper functions, formatters, and hook abstractions
-├── App.js                # App bootstrap configuration
-├── app.json              # Expo application manifest
-├── package.json          # Dependency trees and build scripts
-└── README.md             # Project documentation
+├── app/
+│   ├── (tabs)/
+│   │   ├── _layout.tsx          # Tab bar layout mapping & ambient style context
+│   │   ├── index.tsx            # Home screen feed (Spotlight slider, native lists, Audio FAB)
+│   │   └── explore.tsx          # Asset Correlation filter matrix & Flash live market rows
+│   ├── _layout.tsx              # Main entry point (Global states, dark mode, providers)
+│   ├── _newsApi.ts              # Clean single-request API driver implementation
+│   └── _types.ts                # TypeScript strict interface contracts (Article, Category)
+├── assets/
+│   └── images/
+│       ├── icon.png             # Compiled global application icon asset (108x108 px)
+│       ├── splash-icon.png      # Engine launch branding asset
+│       └── favicon.png          # Static web canvas index reference marker
+├── app.json                     # Native Expo configuration (Adaptive icons, permissions, plugins)
+├── eas.json                     # EAS Cloud build instruction configurations (APK profiles)
+└── package.json                 # Dependency array management mappings
