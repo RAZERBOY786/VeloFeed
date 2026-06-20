@@ -1,24 +1,42 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+// app/_layout.tsx
+import React, { createContext, useContext, useState } from 'react';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { useColorScheme } from 'react-native';
+import { Language } from './_types';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+interface AppContextType {
+  isDarkMode: boolean;
+  setIsDarkMode: (val: boolean) => void;
+  lang: Language;
+  setLang: (lang: Language) => void;
+  bookmarks: string[];
+  toggleBookmark: (id: string) => void;
+}
 
-export const unstable_settings = {
-  anchor: '(tabs)',
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export const useApp = () => {
+  const ctx = useContext(AppContext);
+  if (!ctx) throw new Error('useApp must be used inside AppProvider');
+  return ctx;
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const systemScheme = useColorScheme();
+  const [isDarkMode, setIsDarkMode] = useState(systemScheme === 'dark');
+  const [lang, setLang] = useState<Language>('en');
+  const [bookmarks, setBookmarks] = useState<string[]>([]);
+
+  const toggleBookmark = (id: string) => {
+    setBookmarks((prev) => prev.includes(id) ? prev.filter((bId) => bId !== id) : [...prev, id]);
+  };
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+    <AppContext.Provider value={{ isDarkMode, setIsDarkMode, lang, setLang, bookmarks, toggleBookmark }}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="details" options={{ headerShown: true, title: 'Article Details' }} />
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    </AppContext.Provider>
   );
 }
