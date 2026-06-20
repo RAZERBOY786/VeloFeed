@@ -1,51 +1,60 @@
-# Welcome to your Expo app 👋
+# 🚴 VeloFeed
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<p align="center">
+  <img src="https://img.shields.io/badge/React__Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
+  <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License" />
+</p>
 
-## Get started
+---
 
-1. Install dependencies
+## 📋 Table of Contents
+1. [About the Project](#-about-the-project)
+2. [Core Features](#-core-features)
+3. [Architecture & Tech Stack](#-architecture--tech-stack)
+4. [Getting Started](#-getting-started)
+5. [Project Roadmap](#-project-roadmap)
+6. [Contributing](#-contributing)
+7. [License](#-license)
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 📖 About the Project
 
-   ```bash
-   npx expo start
-   ```
+**VeloFeed** is an enterprise-grade, high-performance mobile application engineered specifically for the cycling community. It serves as a unified content hub, delivering low-latency dynamic social feeds, real-time activity tracking analytics, and contextual notifications for athletes.
 
-In the output, you'll find options to open the app in a
+The system is optimized for mobile-first environments, ensuring minimal memory footprint, smooth list rendering (60 FPS), and reactive data persistence.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ✨ Core Features
 
-## Get a fresh project
+*   ⚡ **Fluid Activity Feed:** Virtualized lists (`FlatList` optimization) providing slick, infinite scrolling through media-rich user posts and community updates.
+*   📊 **Performance Dashboard:** Visually engaging analytical interface designed for active users to read and view metrics effortlessly.
+*   🧩 **Modular Architecture:** Fully decoupled UI components designed for strict reusability, predictability, and easy debugging.
+*   🌑 **Modern UI/UX:** Dark mode compatible aesthetic built with custom-themed micro-interactions and smooth transitions.
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🛠️ Architecture & Tech Stack
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Frontend & Core Mobile Framework
+*   **Framework:** [React Native](https://reactnative.dev/) via [Expo Ecosystem](https://expo.dev/)
+*   **Navigation:** React Navigation (Native Stack & Bottom Tabs) for high-performance screen transitions.
+*   **State Management:** Optimized Context API / State hooks for fast, localized data flow.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# VeloFeed
+### System Directory Layout
+```text
+VeloFeed/
+├── assets/               # Production assets, icons, and branding materials
+├── src/
+│   ├── components/       # Atomized UI modules (FeedCards, CustomButtons, Lists)
+│   ├── navigation/       # Type-safe routing definitions (Stack, Tab Navigators)
+│   ├── screens/          # Core views (FeedScreen, ProfileScreen, AnalyticsScreen)
+│   ├── theme/            # Global styles, color palettes, and layout constants
+│   └── utils/            # Helper functions, formatters, and hook abstractions
+├── App.js                # App bootstrap configuration
+├── app.json              # Expo application manifest
+├── package.json          # Dependency trees and build scripts
+└── README.md             # Project documentation
